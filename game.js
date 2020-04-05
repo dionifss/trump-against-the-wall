@@ -60,7 +60,7 @@ class Player {
 
   preload() {
     {
-      this.imgdo = loadImage("/assets/trumfpup.png");
+      this.imgdo = loadImage("/assets/trumpup.png");
       this.imgup = loadImage("assets/trumpback.png");
       this.imgle = loadImage("assets/trumpleft.png");
       this.imgri = loadImage("assets/trumpright.png");
