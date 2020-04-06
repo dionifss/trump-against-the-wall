@@ -1,6 +1,6 @@
 class Game {
   drawGrid() {
-    createCanvas(WIDTH, HEIGHT);
+    createCanvas(WIDTH + 200, HEIGHT + 200);
     background("lightblue");
 
     for (let i = 0; i <= HEIGHT; i += SQUARE_SIDE) {
@@ -112,7 +112,7 @@ class Flag {
 }
 
 class Door {
-  constructor(col, row, num, x, y) {
+  constructor(col, row, num, x, y, multiplier) {
     this.col = col;
     this.row = row;
     this.num = num;
@@ -120,6 +120,7 @@ class Door {
     this.y = y;
     this.ximg = 50;
     this.yimg = 6;
+    this.multiplier = multiplier;
   }
   preload() {
     this.imgdo = loadImage("assets/doordo.png");
@@ -131,12 +132,13 @@ class Door {
   drawDoor() {
     image(
       this.img,
-      this.col * (this.x + 1),
-      this.row * (this.y + 1),
+      this.col - 50 + 50 * (this.x + 1),
+      this.row - 50 + 50 * (this.y + 1),
       this.ximg,
       this.yimg
     );
   }
+
   movingDoor() {
     //     // console.log("dioni´s clubs is better");
     //     for (let y = 0; y < grid2.length; y++) {
@@ -247,17 +249,27 @@ class Door {
     //     }
   }
   movingMarkusdoor() {
-    if (this.y === 0 && this.x < grid2[0].length - 1) {
+    console.log(this.x, this.y);
+    if (
+      this.y === this.multiplier &&
+      this.x < grid2[0].length - this.multiplier
+    ) {
       this.x++;
-      this.ximg = 50;
+      this.ximg = -50;
       this.yimg = 6;
       this.img = this.imgdo;
-    } else if (grid2[0].length - 1 === this.x && this.y < grid2.length) {
+    } else if (
+      this.x === grid2[0].length - this.multiplier &&
+      this.y < grid2.length - this.multiplier
+    ) {
       this.y++;
       this.ximg = 6;
-      this.yimg = 50;
+      this.yimg = -50;
       this.img = this.imgle;
-    } else if (grid2.length === this.y && this.x > 0) {
+    } else if (
+      this.y === grid2.length - this.multiplier &&
+      this.x > this.multiplier
+    ) {
       this.x -= 1;
       this.ximg = 50;
       this.yimg = 6;
@@ -268,6 +280,7 @@ class Door {
       this.yimg = 50;
       this.img = this.imgri;
     }
+    console.log(this.x, this.y);
   }
 }
 
@@ -340,3 +353,28 @@ let grid2 = [
 //   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 //   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 // ];
+
+//  working one movingMarkusdoor() {
+//     if (this.y === 0 && this.x < grid2[0].length) {
+//       this.x++;
+//       this.ximg = -50;
+//       this.yimg = 6;
+//       this.img = this.imgdo;
+//     } else if (this.x === grid2[0].length && this.y < grid2.length) {
+//       this.y++;
+//       this.ximg = 6;
+//       this.yimg = -50;
+//       this.img = this.imgle;
+//     } else if (this.y === grid2.length && this.x > 0) {
+//       this.x -= 1;
+//       this.ximg = 50;
+//       this.yimg = 6;
+//       this.img = this.imgup;
+//     } else {
+//       this.y -= 1;
+//       this.ximg = 6;
+//       this.yimg = 50;
+//       this.img = this.imgri;
+//     }
+//     console.log(this.y, this.x);
+//   }
