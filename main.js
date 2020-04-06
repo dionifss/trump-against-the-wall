@@ -7,8 +7,8 @@ const fourthquate = new Squares(200, 4, 150, 50, 100, 50);
 const fifthquate = new Squares(250, 5, 50, 220, 0, 200);
 const corona = new Movingthing();
 const flag = new Flag();
-const door1 = new Door(47, 47, 1);
-const door2 = new Door(97, 47, 1);
+const door1 = new Door(50, 50, 1, 0, 0);
+// const door2 = new Door(100, 50, 1, 0, 0);
 
 function preload() {
   trump.preload();
@@ -30,13 +30,20 @@ function draw() {
   thirdsquate.drawSquares();
   fourthquate.drawSquares();
   fifthquate.drawSquares();
+  if (frameCount % 30 == 0) {
+    door1.movingMarkusdoor();
+  }
+  //   if (frameCount % 20 == 0) {
+  //     door2.movingMarkusdoor();
+  //   }
 
   flag.drawFlag();
   door1.drawDoor();
-  door2.drawDoor();
+  //   door2.drawDoor();
 }
 
 function keyPressed() {
   trump.keys();
 }
 door1.movingDoor();
+door1.movingDoor2();
