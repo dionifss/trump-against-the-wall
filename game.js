@@ -19,19 +19,19 @@ class Player {
   }
 
   moveUp() {
-    this.row -= 100;
+    this.row -= 50;
   }
 
   moveDown() {
-    this.row += 100;
+    this.row += 50;
   }
 
   moveLeft() {
-    this.col -= 100;
+    this.col -= 50;
   }
 
   moveRight() {
-    this.col += 100;
+    this.col += 50;
   }
 
   keys() {
@@ -60,7 +60,7 @@ class Player {
 
   preload() {
     {
-      this.imgdo = loadImage("/assets/trumpup.png");
+      this.imgdo = loadImage("assets/trumpup.png");
       this.imgup = loadImage("assets/trumpback.png");
       this.imgle = loadImage("assets/trumpleft.png");
       this.imgri = loadImage("assets/trumpright.png");
@@ -69,14 +69,14 @@ class Player {
   }
 
   draw() {
-    image(this.img, this.col, this.row, 100, 100);
+    image(this.img, this.col, this.row, 50, 50);
   }
 }
 
 class Squares {
-  constructor(col, row, num, size) {
+  constructor(col, num, size) {
     this.col = col;
-    this.row = row;
+    this.row = col;
     this.num = num;
     this.size = size;
   }
@@ -85,7 +85,7 @@ class Squares {
     stroke(200, 250, 0);
     strokeWeight(6);
     noFill();
-    rect(this.col, this.row, this.size + 100, this.size);
+    rect(this.col, this.col, this.size + 50, this.size);
   }
 }
 
@@ -95,6 +95,20 @@ class Movingthing {
   }
 
   drawMoving() {
-    image(this.img, WIDTH * (11 / 12), HEIGHT * (10 / 11), 100, 100);
+    image(this.img, WIDTH * (11 / 12), HEIGHT * (10 / 11), 50, 50);
   }
 }
+
+let grid = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+  [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
+  [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
+  [0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0],
+  [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
+  [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
+  [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+];

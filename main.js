@@ -1,6 +1,6 @@
 const game = new Game();
 const trump = new Player(0, 0);
-const firstsquare = new Squares(100, 100, 1, 900);
+const firstsquare = new Squares(50, 1, 450);
 const corona = new Movingthing();
 
 function preload() {

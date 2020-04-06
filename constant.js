@@ -1,3 +1,3 @@
-const WIDTH = 1200;
-const HEIGHT = 1100;
-const SQUARE_SIDE = 100;
+const WIDTH = 600;
+const HEIGHT = 550;
+const SQUARE_SIDE = 50;
