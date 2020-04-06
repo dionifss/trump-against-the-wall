@@ -46,35 +46,35 @@ function draw() {
   thirdsquate.drawSquares();
   fourthquate.drawSquares();
   fifthquate.drawSquares();
-  if (frameCount % 30 == 0) {
+  if (frameCount % 25 == 0) {
     door1.movingMarkusdoor();
   }
-  if (frameCount % 30 == 0) {
+  if (frameCount % 25 == 0) {
     door2.movingMarkusdoor();
   }
 
-  if (frameCount % 25 == 0) {
+  if (frameCount % 23 == 0) {
     door21.movingMarkusdoor();
   }
-  if (frameCount % 25 == 0) {
+  if (frameCount % 23 == 0) {
     door22.movingMarkusdoor();
   }
-  if (frameCount % 23 == 0) {
+  if (frameCount % 21 == 0) {
     door31.movingMarkusdoor();
   }
-  if (frameCount % 23 == 0) {
+  if (frameCount % 21 == 0) {
     door32.movingMarkusdoor();
   }
-  if (frameCount % 20 == 0) {
+  if (frameCount % 18 == 0) {
     door41.movingMarkusdoor();
   }
-  if (frameCount % 20 == 0) {
+  if (frameCount % 18 == 0) {
     door42.movingMarkusdoor();
   }
-  if (frameCount % 16 == 0) {
+  if (frameCount % 15 == 0) {
     door51.movingMarkusdoor();
   }
-  if (frameCount % 16 == 0) {
+  if (frameCount % 15 == 0) {
     door52.movingMarkusdoor();
   }
 

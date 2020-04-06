@@ -1,6 +1,6 @@
 class Game {
   drawGrid() {
-    createCanvas(WIDTH + 200, HEIGHT + 200);
+    createCanvas(WIDTH, HEIGHT);
     background("lightblue");
 
     for (let i = 0; i <= HEIGHT; i += SQUARE_SIDE) {
