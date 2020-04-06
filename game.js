@@ -1,6 +1,6 @@
 class Game {
   drawGrid() {
-    createCanvas(WIDTH + 600, HEIGHT + 500);
+    createCanvas(WIDTH, HEIGHT);
     background("lightblue");
 
     for (let i = 0; i <= HEIGHT; i += SQUARE_SIDE) {
@@ -69,7 +69,7 @@ class Player {
   }
 
   draw() {
-    image(this.img, this.col, this.row, 50, 50);
+    image(this.img, this.col + 4, this.row + 5, 46, 46);
   }
 }
 
@@ -86,9 +86,9 @@ class Squares {
 
   drawSquares() {
     stroke(this.col1, this.col2, this.col3);
-    strokeWeight(6);
+    strokeWeight(5);
     noFill();
-    rect(this.col, this.col, this.size + 50, this.size);
+    rect(this.col + 2.05, this.col + 2.05, this.size + 50, this.size);
   }
 }
 

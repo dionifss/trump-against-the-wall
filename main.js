@@ -23,7 +23,7 @@ function setup() {}
 function draw() {
   console.log("dioni");
   game.drawGrid();
-  trump.draw();
+
   corona.drawMoving();
   firstsquare.drawSquares();
   secondsquare.drawSquares();
@@ -40,6 +40,7 @@ function draw() {
   flag.drawFlag();
   door1.drawDoor();
   //   door2.drawDoor();
+  trump.draw();
 }
 
 function keyPressed() {
