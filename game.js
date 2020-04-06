@@ -74,15 +74,18 @@ class Player {
 }
 
 class Squares {
-  constructor(col, num, size) {
+  constructor(col, num, size, col1, col2, col3) {
     this.col = col;
     this.row = col;
     this.num = num;
     this.size = size;
+    this.col1 = col1;
+    this.col2 = col2;
+    this.col3 = col3;
   }
 
   drawSquares() {
-    stroke(200, 250, 0);
+    stroke(this.col1, this.col2, this.col3);
     strokeWeight(6);
     noFill();
     rect(this.col, this.col, this.size + 50, this.size);
@@ -99,16 +102,176 @@ class Movingthing {
   }
 }
 
-let grid = [
+class Flag {
+  preload() {
+    this.img = loadImage("assets/flag.png");
+  }
+  drawFlag() {
+    image(this.img, (WIDTH - 85) / 2, (HEIGHT - 52) / 2, 80, 50);
+  }
+}
+
+class Door {
+  constructor(col, row, num) {
+    this.col = col;
+    this.row = row;
+    this.num = num;
+  }
+  preload() {
+    this.img = loadImage("assets/doordo.png");
+  }
+  drawDoor() {
+    image(this.img, this.col, this.row, 54, 6);
+  }
+  movingDoor() {
+    // console.log("dioni´s clubs is better");
+    for (let y = 0; y < grid2.length; y++) {
+      //   console.log("markus fan club");
+      for (let x = 0; x < grid2[y].length; x++) {
+        if (grid2[y][x] > 0) {
+          //   console.log(y, x);
+
+          if (y == 0) {
+            // console.log(y);
+            if (grid2[y][x + 2] == undefined) {
+              //   console.log(x, grid2[y].length - 2);
+
+              if (x == grid2[y].length - 2) {
+                grid2[y + 1][x + 1] = 1;
+                grid2[y][x] = 0;
+                // console.log("markus is the winner");
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              } else {
+                grid2[y + 2][x] = 1;
+                grid2[y][x] = 0;
+
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              }
+            } else {
+              grid2[y][x + 2] = grid2[y][x];
+              grid2[y][x] = 0;
+              //   console.log("mar lose chess");
+
+              x = grid2[y].length;
+              y = grid2.length - 1;
+            }
+          } else if (x == grid2[y].length - 1) {
+            // console.log(x);
+            // console.log(grid2[y + 2][x]);
+            if (grid2[y + 2] == undefined) {
+              console.log(grid2.length - 2, y);
+
+              if (y == grid2.length - 2) {
+                grid2[y + 1][x - 1] = 1;
+                grid2[y][x] = 0;
+                // console.log("markus is the winner");
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              } else {
+                grid2[y][x - 2] = 1;
+                grid2[y][x] = 0;
+
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              }
+            } else {
+              console.log(x, y);
+              grid2[y + 2][x] = grid2[y][x];
+              grid2[y][x] = 0;
+              //   console.log("mar lose chess");
+
+              x = grid2[y].length;
+              y = grid2.length - 1;
+            }
+          } else if (y == grid2.length - 1) {
+            // console.log(y);
+            if (grid2[y][x - 2] == undefined) {
+              //   console.log(x, grid2[y].length - 2);
+
+              if (x == grid2[y].length - 1 - (grid2[y].length - 2)) {
+                grid2[y - 1][x - 1] = 1;
+                grid2[y][x] = 0;
+                // console.log("markus is the winner");
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              } else {
+                console.log(x, y);
+                grid2[y - 2][x] = 1;
+                grid2[y][x] = 0;
+
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              }
+            } else {
+              grid2[y][x - 2] = grid2[y][x];
+              grid2[y][x] = 0;
+              //   console.log("mar lose chess");
+
+              x = grid2[y].length;
+              y = grid2.length - 1;
+            }
+          } else if (x == 0) {
+            // console.log(x);
+            // console.log(grid2[y + 2][x]);
+            if (grid2[y - 2] == undefined) {
+              console.log(grid2.length - 2, y);
+
+              if (y == grid2.length - 1 - (grid2.length - 2)) {
+                grid2[y - 1][x + 1] = 1;
+                grid2[y][x] = 0;
+                // console.log("markus is the winner");
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              } else {
+                grid2[y][x + 2] = 1;
+                grid2[y][x] = 0;
+
+                x = grid2[y].length;
+                y = grid2.length - 1;
+              }
+            } else {
+              console.log(x, y);
+              grid2[y - 2][x] = grid2[y][x];
+              grid2[y][x] = 0;
+              //   console.log("mar lose chess");
+
+              x = grid2[y].length;
+              y = grid2.length - 1;
+            }
+          }
+        }
+      }
+    }
+    console.log(grid2);
+  }
+}
+
+// let grid = [
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+//   [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+//   [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
+//   [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
+//   [0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0],
+//   [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
+//   [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
+//   [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+//   [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// ];
+
+let grid2 = [
+  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-  [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
-  [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
-  [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
-  [0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0],
-  [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
-  [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
-  [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
-  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
