@@ -13,25 +13,37 @@ class Game {
 }
 
 class Player {
-  constructor(col, row) {
+  constructor(col, row, x, y) {
     this.col = col;
     this.row = row;
+    this.x = x;
+    this.y = y;
+    this.squarePosition = 0;
+    this.doors = [];
   }
 
   moveUp() {
     this.row -= 50;
+    this.y -= 1;
+    this.trumpPasssADoor(this.x, this.y + 1);
   }
 
   moveDown() {
     this.row += 50;
+    this.y += 1;
+    this.trumpPasssADoor(this.x, this.y - 1);
   }
 
   moveLeft() {
     this.col -= 50;
+    this.x -= 1;
+    this.trumpPasssADoor(this.x + 1, this.y);
   }
 
   moveRight() {
     this.col += 50;
+    this.x += 1;
+    this.trumpPasssADoor(this.x - 1, this.y);
   }
 
   keys() {
@@ -54,6 +66,25 @@ class Player {
       if (this.row !== HEIGHT * (10 / 11)) {
         this.moveDown();
         this.img = this.imgdo;
+      }
+    }
+  }
+
+  trumpPasssADoor(trumpPreviousX, trumpPreviousY) {
+    if (this.squarePosition !== trumpArr[this.y][this.x]) {
+      let pasingDoor = false;
+      this.doors.forEach((element) => {
+        if (trumpPreviousX == element.x && trumpPreviousY == element.y) {
+          this.squarePosition = trumpArr[this.y][this.x];
+          pasingDoor = true;
+          console.log("wiin win");
+          console.log("passed");
+        }
+      });
+      if (pasingDoor == true) {
+        console.log("well done");
+      } else {
+        console.log("gme over");
       }
     }
   }
@@ -93,12 +124,18 @@ class Squares {
 }
 
 class Movingthing {
+  constructor(col, row, x, y) {
+    this.col = col;
+    this.row = row;
+    this.x = x;
+    this.y = y;
+  }
   preload() {
     this.img = loadImage("assets/corona.png");
   }
 
   drawMoving() {
-    image(this.img, WIDTH * (11 / 12), HEIGHT * (10 / 11), 50, 50);
+    image(coronimg, this.col + 3.5, this.row + 3.5, 45, 45);
   }
 }
 
@@ -132,8 +169,8 @@ class Door {
   drawDoor() {
     image(
       this.img,
-      this.col - 50 + 50 * (this.x + 1),
-      this.row - 50 + 50 * (this.y + 1),
+      this.col + 50 * this.x,
+      this.row + 50 * this.y,
       this.ximg,
       this.yimg
     );
@@ -249,7 +286,7 @@ class Door {
     //     }
   }
   movingMarkusdoor() {
-    console.log(this.x, this.y);
+    // console.log(this.x, this.y);
     if (
       this.y === this.multiplier &&
       this.x < grid2[0].length - this.multiplier
@@ -280,7 +317,7 @@ class Door {
       this.yimg = 50;
       this.img = this.imgri;
     }
-    console.log(this.x, this.y);
+    // console.log(this.x, this.y);
   }
 }
 
@@ -296,85 +333,16 @@ let grid2 = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
-// function rotateDoors(multiplier, door) {
-//   if (door.y === multiplier && door.x < grid2[0].length - multiplier) {
-//     door.x++;
-//   } else if (
-//     grid2[0].length - multiplier === door.x &&
-//     door.y < grid2.length - multiplier
-//   ) {
-//     door.y += 1;
-//   } else if (grid2.length - multiplier === door.y && door.x > multiplier) {
-//     door.x -= 1;
-//   } else {
-//     door.y -= 1;
-//   }
-// }
-// const doors = [
-//   { x: 0, y: 0 },
-//   { x: 1, y: 1 },
-// ];
-// setInterval(() => {
-//   console.log("tick");
-//   doors.forEach((door, index) => rotateDoors(index, door));
-//   console.log(doors[0]);
-// }, 200);
-
-// movingMarkusdoor() {
-//     if (
-//       this.y === this.multiplier &&
-//       this.x < grid2[0].length - this.multiplier
-//     ) {
-//       this.x++;
-//     } else if (
-//       grid2[0].length - this.multiplier === this.x &&
-//       this.y < grid2.length - this.multiplier
-//     ) {
-//       this.y += 1;
-//     } else if (
-//       grid2.length - this.multiplier === this.y &&
-//       this.x > this.multiplier
-//     ) {
-//       this.x -= 1;
-//     } else {
-//       this.y -= 1;
-//     }
-//   }
-// }
-
-// let grid2 = [
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// ];
-
-//  working one movingMarkusdoor() {
-//     if (this.y === 0 && this.x < grid2[0].length) {
-//       this.x++;
-//       this.ximg = -50;
-//       this.yimg = 6;
-//       this.img = this.imgdo;
-//     } else if (this.x === grid2[0].length && this.y < grid2.length) {
-//       this.y++;
-//       this.ximg = 6;
-//       this.yimg = -50;
-//       this.img = this.imgle;
-//     } else if (this.y === grid2.length && this.x > 0) {
-//       this.x -= 1;
-//       this.ximg = 50;
-//       this.yimg = 6;
-//       this.img = this.imgup;
-//     } else {
-//       this.y -= 1;
-//       this.ximg = 6;
-//       this.yimg = 50;
-//       this.img = this.imgri;
-//     }
-//     console.log(this.y, this.x);
-//   }
+let trumpArr = [
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+  [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
+  [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
+  [0, 1, 2, 3, 4, 5, 5, 4, 3, 2, 1, 0],
+  [0, 1, 2, 3, 4, 4, 4, 4, 3, 2, 1, 0],
+  [0, 1, 2, 3, 3, 3, 3, 3, 3, 2, 1, 0],
+  [0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0],
+  [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+];

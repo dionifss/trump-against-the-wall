@@ -1,11 +1,12 @@
 const game = new Game();
-const trump = new Player(0, 0);
+const trump = new Player(0, 0, 0, 0);
 const firstsquare = new Squares(50, 1, 450, 200, 250, 0);
 const secondsquare = new Squares(100, 2, 350, 100, 0, 100);
 const thirdsquate = new Squares(150, 3, 250, 0, 100, 200);
 const fourthquate = new Squares(200, 4, 150, 50, 100, 50);
 const fifthquate = new Squares(250, 5, 50, 220, 0, 200);
-const corona = new Movingthing();
+const corona = new Movingthing(50, 50, 3, 0);
+let arrcoronas = [];
 const flag = new Flag();
 const door1 = new Door(50, 50, 1, 7, 0, 0);
 const door2 = new Door(50, 50, 1, 8, 0, 0);
@@ -17,7 +18,23 @@ const door41 = new Door(50, 50, 1, 3, 3, 3);
 const door42 = new Door(50, 50, 1, 4, 3, 3);
 const door51 = new Door(50, 50, 1, 4, 4, 4);
 const door52 = new Door(50, 50, 1, 5, 4, 4);
-
+let song;
+let coronaX = WIDTH - SQUARE_SIDE;
+let coronaY = HEIGHT - SQUARE_SIDE;
+trump.doors.push(
+  door1,
+  door2,
+  door21,
+  door22,
+  door31,
+  door32,
+  door41,
+  door42,
+  door51,
+  door52
+);
+let slider;
+let coronimg;
 function preload() {
   trump.preload();
   corona.preload();
@@ -32,15 +49,49 @@ function preload() {
   door42.preload();
   door51.preload();
   door52.preload();
+  coronimg = loadImage("assets/corona.png");
 }
 
-function setup() {}
+function setup() {
+  createCanvas(WIDTH, HEIGHT);
+  song = loadSound("music/musicmorenos.mp3", loaded);
+  slider = createSlider(0, 1, 0.3, 0.01);
+}
+function loaded() {
+  song.play();
+}
+function espiral(limite) {
+  // console.log(coronaX, coronaY);
+  if (coronaY === HEIGHT - SQUARE_SIDE - limite && coronaX > 0 + limite) {
+    coronaX -= SQUARE_SIDE;
+  } else if (coronaX === 0 + limite && coronaY > 0 + limite) {
+    coronaY -= SQUARE_SIDE;
+  } else if (coronaY === 0 + limite && coronaX < WIDTH - SQUARE_SIDE - limite) {
+    coronaX += SQUARE_SIDE;
+  } else if (
+    coronaX === WIDTH - SQUARE_SIDE - limite &&
+    coronaY >= 0 &&
+    coronaY < HEIGHT - SQUARE_SIDE * 2 - limite
+  ) {
+    coronaY += SQUARE_SIDE;
+  } else {
+    espiral(limite + SQUARE_SIDE);
+  }
 
+  arrcoronas.push(new Movingthing(coronaX, coronaY, 1, 1));
+}
 function draw() {
-  console.log("dioni");
   game.drawGrid();
+  if (frameCount === 1) {
+    arrcoronas.push(new Movingthing(coronaX, coronaY, 1, 1));
+  }
+  if (frameCount % 20 == 0) {
+    espiral(0);
+  }
 
-  corona.drawMoving();
+  arrcoronas.forEach((elem) => {
+    elem.drawMoving();
+  });
   firstsquare.drawSquares();
   secondsquare.drawSquares();
   thirdsquate.drawSquares();
@@ -90,10 +141,25 @@ function draw() {
   door51.drawDoor();
   door52.drawDoor();
   trump.draw();
+  song.setVolume(slider.value());
+  console.log(door1.y, door1.x, trump.y, trump.x);
 }
 
 function keyPressed() {
+  // trump.trumpPasssADoor();
   trump.keys();
 }
-door1.movingDoor();
-door1.movingDoor2();
+
+// let Arrcoron = [
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// ];
