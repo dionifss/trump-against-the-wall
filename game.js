@@ -69,6 +69,27 @@ class Player {
       }
     }
   }
+  coronafinallyCrashTrump() {
+    if (
+      this.x + 45 > corona.coronaX &&
+      this.x < corona.coronaX + 45 &&
+      this.y > corona.coronaY + 45 &&
+      this.y + 45 < corona.coronaY
+    ) {
+      console.log("corona make you Game Over");
+    }
+  }
+
+  trumpgettheflag() {
+    console.log(this.x, this.y);
+    if ((this.x == 5 || this.x == 6) && this.y == 5) {
+      console.log("america");
+      if (!amerGreat.isPlaying()) {
+        amerGreat.setVolume(0.1);
+        amerGreat.play();
+      }
+    }
+  }
 
   trumpPasssADoor(trumpPreviousX, trumpPreviousY) {
     if (this.squarePosition !== trumpArr[this.y][this.x]) {
