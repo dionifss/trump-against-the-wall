@@ -156,7 +156,7 @@ class Door {
     this.x = x;
     this.y = y;
     this.ximg = 50;
-    this.yimg = 6;
+    this.yimg = 55;
     this.multiplier = multiplier;
   }
   preload() {
@@ -164,16 +164,14 @@ class Door {
     this.imgri = loadImage("assets/doorri2.png");
     this.imgup = loadImage("assets/doorup.png");
     this.imgle = loadImage("assets/doorle.png");
+    this.cake = loadImage("assets/cake.png");
     this.img = this.imgdo;
   }
   drawDoor() {
-    image(
-      this.img,
-      this.col + 50 * this.x,
-      this.row + 50 * this.y,
-      this.ximg,
-      this.yimg
-    );
+    image(this.img, 50 * this.x, 50 * this.y, this.ximg, this.yimg);
+  }
+  drawCake() {
+    image(this.cake, 50 * this.x, 50 * this.y, 20, 20);
   }
 
   movingDoor() {
@@ -289,33 +287,57 @@ class Door {
     // console.log(this.x, this.y);
     if (
       this.y === this.multiplier &&
-      this.x < grid2[0].length - this.multiplier
+      this.x <= grid2[0].length - this.multiplier
     ) {
       this.x++;
-      this.ximg = -50;
-      this.yimg = 6;
+      this.ximg = 50;
+      this.yimg = 55;
       this.img = this.imgdo;
+      if (this.x === grid2[0].length + 1 - this.multiplier) {
+        this.y++;
+        this.ximg = 6;
+        this.yimg = 50.3;
+        this.img = this.imgle;
+      }
     } else if (
-      this.x === grid2[0].length - this.multiplier &&
-      this.y < grid2.length - this.multiplier
+      this.x > grid2[0].length - this.multiplier &&
+      this.y <= grid2.length - this.multiplier
     ) {
       this.y++;
       this.ximg = 6;
-      this.yimg = -50;
+      this.yimg = 50.3;
       this.img = this.imgle;
+      if (this.y === grid2.length + 1 - this.multiplier) {
+        this.x--;
+        this.ximg = 50.3;
+        this.yimg = 6;
+        this.img = this.imgup;
+      }
     } else if (
-      this.y === grid2.length - this.multiplier &&
+      this.y > grid2.length - this.multiplier &&
       this.x > this.multiplier
     ) {
       this.x -= 1;
-      this.ximg = 50;
+      this.ximg = 50.3;
       this.yimg = 6;
       this.img = this.imgup;
+      if (this.x === this.multiplier) {
+        this.y--;
+        this.ximg = 55;
+        this.yimg = 50;
+        this.img = this.imgri;
+      }
     } else {
       this.y -= 1;
-      this.ximg = 6;
+      this.ximg = 55;
       this.yimg = 50;
       this.img = this.imgri;
+      if (this.y === this.multiplier) {
+        this.x++;
+        this.ximg = 50;
+        this.yimg = 55;
+        this.img = this.imgdo;
+      }
     }
     // console.log(this.x, this.y);
   }

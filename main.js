@@ -18,6 +18,8 @@ const door41 = new Door(50, 50, 1, 3, 3, 3);
 const door42 = new Door(50, 50, 1, 4, 3, 3);
 const door51 = new Door(50, 50, 1, 4, 4, 4);
 const door52 = new Door(50, 50, 1, 5, 4, 4);
+const door1cake = new Door(50, 50, 1, 7, 0, 0);
+const door2cake = new Door(50, 50, 1, 8, 0, 0);
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
 let coronaY = HEIGHT - SQUARE_SIDE;
@@ -50,6 +52,8 @@ function preload() {
   door51.preload();
   door52.preload();
   coronimg = loadImage("assets/corona.png");
+  door1cake.preload();
+  door2cake.preload();
 }
 
 function setup() {
@@ -77,7 +81,6 @@ function espiral(limite) {
   } else {
     espiral(limite + SQUARE_SIDE);
   }
-
   arrcoronas.push(new Movingthing(coronaX, coronaY, 1, 1));
 }
 function draw() {
@@ -97,12 +100,18 @@ function draw() {
   thirdsquate.drawSquares();
   fourthquate.drawSquares();
   fifthquate.drawSquares();
-  if (frameCount % 25 == 0) {
+  if (frameCount % 20 == 0) {
     door1.movingMarkusdoor();
   }
-  if (frameCount % 25 == 0) {
+  if (frameCount % 20 == 0) {
     door2.movingMarkusdoor();
   }
+  // if (frameCount % 20 == 0) {
+  //   door1cake.movingMarkusdoor();
+  // }
+  // if (frameCount % 20 == 0) {
+  //   door2cake.movingMarkusdoor();
+  // }
 
   if (frameCount % 23 == 0) {
     door21.movingMarkusdoor();
@@ -140,26 +149,14 @@ function draw() {
   door42.drawDoor();
   door51.drawDoor();
   door52.drawDoor();
+  // door1cake.drawCake();
+  // door2cake.drawCake();
   trump.draw();
   song.setVolume(slider.value());
-  console.log(door1.y, door1.x, trump.y, trump.x);
+  // console.log(door1.y, door1.x, trump.y, trump.x);
 }
 
 function keyPressed() {
   // trump.trumpPasssADoor();
   trump.keys();
 }
-
-// let Arrcoron = [
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// ];
