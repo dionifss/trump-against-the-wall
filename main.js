@@ -106,6 +106,7 @@ function draw() {
   thirdsquate.drawSquares();
   fourthquate.drawSquares();
   fifthquate.drawSquares();
+
   if (frameCount % 20 == 0) {
     door1.movingMarkusdoor();
   }
@@ -155,11 +156,7 @@ function draw() {
   door42.drawDoor();
   door51.drawDoor();
   door52.drawDoor();
-  // door1cake.drawCake();
-  // door2cake.drawCake();
-  if (frameCount === 1) {
-    arrcoronas.push(new Movingthing(coronaX, coronaY, 1, 1));
-  }
+
   if (frameCount % 7 == 0) {
     espiral(0);
   }
@@ -168,12 +165,52 @@ function draw() {
     elem.drawMoving();
   });
   trump.draw();
-  trump.coronafinallyCrashTrump();
+  coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
+
+  if (trump.trumpPasssADoor()) {
+    print("GAME OVER");
+    background(250, 0, 0);
+    noLoop();
+    song.pause();
+  }
 
   // console.log(door1.y, door1.x, trump.y, trump.x);
 }
 
 function keyPressed() {
   trump.keys();
+}
+
+function coronafinallyCrashTrump(arrcoronas, a) {
+  // console.log(coronaX, coronaY, trump.x, trump.y);
+  // console.log(corona);
+  arrcoronas.forEach(function (corona) {
+    let left = corona.x;
+    let right = corona.x + 45;
+    let top = corona.y;
+    let bottom = corona.y + 45;
+
+    let playerLeft = a.x;
+    let playerRight = a.x + 45;
+    let playerTop = a.y;
+    let playerBottom = a.y + 45;
+    let xCollision =
+      (left > playerLeft && left < playerRight) ||
+      (right > playerLeft && right < playerRight);
+    let yCollision =
+      (top > playerTop && top < playerBottom) ||
+      (bottom > playerTop && bottom < playerBottom);
+    // console.log(arrcoronas);
+    if (
+      // a.x + 45 > corona.coronaX &&
+      // a.x < corona.coronaX + 45 &&
+      // a.y < corona.coronaY + 45 &&
+      // a.y + 45 > corona.coronaY
+      yCollision &&
+      xCollision
+    ) {
+      console.log("corona make you Game Over");
+    }
+  });
 }

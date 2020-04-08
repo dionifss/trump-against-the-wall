@@ -69,19 +69,22 @@ class Player {
       }
     }
   }
-  coronafinallyCrashTrump() {
-    if (
-      this.x + 45 > corona.coronaX &&
-      this.x < corona.coronaX + 45 &&
-      this.y > corona.coronaY + 45 &&
-      this.y + 45 < corona.coronaY
-    ) {
-      console.log("corona make you Game Over");
-    }
-  }
+
+  // coronafinallyCrashTrump(arrcoronas,trump) {
+  //   arrcoronas.forEach(function (corona) {
+  //     if (
+  //       this.x + 45 > corona.coronaX &&
+  //       this.x < corona.coronaX + 45 &&
+  //       this.y > corona.coronaY + 45 &&
+  //       this.y + 45 < corona.coronaY
+  //     ) {
+  //       console.log("corona make you Game Over");
+  //     }
+  //   });
+  // }
 
   trumpgettheflag() {
-    console.log(this.x, this.y);
+    // console.log(this.x, this.y);
     if ((this.x == 5 || this.x == 6) && this.y == 5) {
       console.log("america");
       if (!amerGreat.isPlaying()) {
@@ -89,6 +92,10 @@ class Player {
         amerGreat.play();
       }
     }
+  }
+
+  endGame() {
+    return true;
   }
 
   trumpPasssADoor(trumpPreviousX, trumpPreviousY) {
@@ -100,12 +107,15 @@ class Player {
           pasingDoor = true;
           console.log("wiin win");
           console.log("passed");
+          return false;
         }
       });
       if (pasingDoor == true) {
         console.log("well done");
+        return false;
       } else {
         console.log("gme over");
+        return this.endGame();
       }
     }
   }
@@ -121,7 +131,8 @@ class Player {
   }
 
   draw() {
-    image(this.img, this.col + 4, this.row + 5, 46, 46);
+    image(this.img, this.col, this.row, 45, 45);
+    // image(this.img, this.col + 4, this.row + 5, 45, 45);
   }
 }
 
@@ -146,17 +157,18 @@ class Squares {
 
 class Movingthing {
   constructor(col, row, x, y) {
-    this.col = col;
-    this.row = row;
-    this.x = x;
-    this.y = y;
+    this.x = col;
+    this.y = row;
+    /* this.x = x;
+    this.y = y; */
   }
   preload() {
     this.img = loadImage("assets/corona.png");
   }
 
   drawMoving() {
-    image(coronimg, this.col + 3.5, this.row + 3.5, 45, 45);
+    image(coronimg, this.x, this.y, 45, 45);
+    // image(coronimg, this.x + 3.5, this.y + 3.5, 45, 45);
   }
 }
 
