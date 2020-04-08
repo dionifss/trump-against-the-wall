@@ -38,6 +38,7 @@ trump.doors.push(
 );
 let slider;
 let coronimg;
+
 function preload() {
   trump.preload();
   corona.preload();
@@ -57,13 +58,11 @@ function preload() {
   door2cake.preload();
   amerGreat = loadSound("music/americaGreatAgain.mp3");
 }
-
 function setup() {
   createCanvas(WIDTH, HEIGHT);
   song = loadSound("music/musicmorenos.mp3", loaded);
   song.setVolume(0.1);
   button = createButton("🛑music");
-
   button.mousePressed(togglePlaying);
 }
 function loaded() {
@@ -80,7 +79,6 @@ function togglePlaying() {
   }
 }
 function espiral(limite) {
-  // console.log(coronaX, coronaY);
   if (coronaY === HEIGHT - SQUARE_SIDE - limite && coronaX > 0 + limite) {
     coronaX -= SQUARE_SIDE / 4;
   } else if (coronaX === 0 + limite && coronaY > 0 + limite) {
@@ -100,26 +98,17 @@ function espiral(limite) {
 }
 function draw() {
   game.drawGrid();
-
   firstsquare.drawSquares();
   secondsquare.drawSquares();
   thirdsquate.drawSquares();
   fourthquate.drawSquares();
   fifthquate.drawSquares();
-
   if (frameCount % 20 == 0) {
     door1.movingMarkusdoor();
   }
   if (frameCount % 20 == 0) {
     door2.movingMarkusdoor();
   }
-  // if (frameCount % 20 == 0) {
-  //   door1cake.movingMarkusdoor();
-  // }
-  // if (frameCount % 20 == 0) {
-  //   door2cake.movingMarkusdoor();
-  // }
-
   if (frameCount % 23 == 0) {
     door21.movingMarkusdoor();
   }
@@ -144,7 +133,6 @@ function draw() {
   if (frameCount % 15 == 0) {
     door52.movingMarkusdoor();
   }
-
   flag.drawFlag();
   door1.drawDoor();
   door2.drawDoor();
@@ -156,61 +144,45 @@ function draw() {
   door42.drawDoor();
   door51.drawDoor();
   door52.drawDoor();
-
   if (frameCount % 7 == 0) {
     espiral(0);
   }
-
   arrcoronas.forEach((elem) => {
     elem.drawMoving();
   });
   trump.draw();
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
-
-  if (trump.trumpPasssADoor()) {
-    print("GAME OVER");
+  if (game.finished == true) {
     background(250, 0, 0);
     noLoop();
     song.pause();
+    print("GAME OVER");
   }
-
-  // console.log(door1.y, door1.x, trump.y, trump.x);
 }
-
 function keyPressed() {
   trump.keys();
 }
-
 function coronafinallyCrashTrump(arrcoronas, a) {
-  // console.log(coronaX, coronaY, trump.x, trump.y);
-  // console.log(corona);
   arrcoronas.forEach(function (corona) {
     let left = corona.x;
-    let right = corona.x + 45;
+    let right = corona.x;
     let top = corona.y;
-    let bottom = corona.y + 45;
-
-    let playerLeft = a.x;
-    let playerRight = a.x + 45;
-    let playerTop = a.y;
-    let playerBottom = a.y + 45;
+    let bottom = corona.y;
+    let playerLeft = a.col;
+    let playerRight = a.col + 45;
+    let playerTop = a.row;
+    let playerBottom = a.row + 45;
     let xCollision =
-      (left > playerLeft && left < playerRight) ||
+      (left + 5 > playerLeft && left < playerRight) ||
       (right > playerLeft && right < playerRight);
     let yCollision =
-      (top > playerTop && top < playerBottom) ||
+      (top + 5 > playerTop && top < playerBottom) ||
       (bottom > playerTop && bottom < playerBottom);
-    // console.log(arrcoronas);
-    if (
-      // a.x + 45 > corona.coronaX &&
-      // a.x < corona.coronaX + 45 &&
-      // a.y < corona.coronaY + 45 &&
-      // a.y + 45 > corona.coronaY
-      yCollision &&
-      xCollision
-    ) {
+
+    if (xCollision && yCollision) {
       console.log("corona make you Game Over");
+      game.endGame();
     }
   });
 }
