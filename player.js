@@ -58,10 +58,10 @@ class Player {
 
   trumpgettheflag() {
     // console.log(this.x, this.y);
-    if ((this.x == 5 || this.x == 6) && this.y == 5) {
+    if ((this.x == 5 || this.x == 6) && this.y == 5 && game.finished == false) {
       console.log("america");
       if (!amerGreat.isPlaying()) {
-        amerGreat.setVolume(0.1);
+        amerGreat.setVolume(0.2);
         amerGreat.play();
       }
     }

@@ -57,14 +57,15 @@ function preload() {
   cake1up.preload();
   cake1do.preload();
 
+  // let = imgovery = createImg("assets/cake.png");
+  imgover = loadImage("assets/gif-funeral.gif");
   coronimg = loadImage("assets/corona.png");
-
   amerGreat = loadSound("music/americaGreatAgain.mp3");
 }
 function setup() {
   createCanvas(WIDTH, HEIGHT);
   song = loadSound("music/musicmorenos.mp3", loaded);
-  song.setVolume(0.1);
+  song.setVolume(0.05);
   button = createButton("🛑music");
   button.mousePressed(togglePlaying);
 }
@@ -166,10 +167,16 @@ function draw() {
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
   if (game.finished == true) {
-    background(250, 0, 0);
     noLoop();
-    song.pause();
-    print("GAME OVER");
+    song.setVolume(0.3);
+
+    background(120, 120, 120);
+    textSize(60);
+    textFont("Georgia");
+    fill("rgb(0,255,0)");
+    text("GAME OVER", 120, 90);
+    image(imgover, 130, 120, 340, 250);
+    // image(imgover, 1, 1);
   }
 }
 function keyPressed() {
