@@ -10,7 +10,7 @@ class Movingthing {
   }
 
   drawMoving() {
-    image(coronimg, this.x, this.y, 45, 45);
-    // image(coronimg, this.x + 3.5, this.y + 3.5, 45, 45);
+    // image(coronimg, this.x, this.y, 45, 45);
+    image(coronimg, this.x + 3.5, this.y + 3.5, 45, 45);
   }
 }

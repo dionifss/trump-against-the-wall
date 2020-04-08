@@ -18,8 +18,8 @@ const door41 = new Door(50, 50, 1, 5, 3, 3);
 const door42 = new Door(50, 50, 1, 6, 3, 3);
 const door51 = new Door(50, 50, 1, 5, 4, 4);
 const door52 = new Door(50, 50, 1, 6, 4, 4);
-const door1cake = new Door(50, 50, 1, 7, 0, 0);
-const door2cake = new Door(50, 50, 1, 8, 0, 0);
+const cake1 = new Shoot();
+
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
 let coronaY = HEIGHT - SQUARE_SIDE;
@@ -53,9 +53,10 @@ function preload() {
   door42.preload();
   door51.preload();
   door52.preload();
+  cake1.preload();
+
   coronimg = loadImage("assets/corona.png");
-  door1cake.preload();
-  door2cake.preload();
+
   amerGreat = loadSound("music/americaGreatAgain.mp3");
 }
 function setup() {
@@ -109,6 +110,7 @@ function draw() {
   if (frameCount % 20 == 0) {
     door2.movingMarkusdoor();
   }
+
   if (frameCount % 23 == 0) {
     door21.movingMarkusdoor();
   }
@@ -144,6 +146,9 @@ function draw() {
   door42.drawDoor();
   door51.drawDoor();
   door52.drawDoor();
+
+  cake1.draw();
+
   if (frameCount % 7 == 0) {
     espiral(0);
   }
@@ -151,6 +156,7 @@ function draw() {
     elem.drawMoving();
   });
   trump.draw();
+  cake1.collides(trump);
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
   if (game.finished == true) {

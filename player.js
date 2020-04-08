@@ -93,12 +93,13 @@ class Player {
       this.imgup = loadImage("assets/trumpback.png");
       this.imgle = loadImage("assets/trumpleft.png");
       this.imgri = loadImage("assets/trumpright.png");
+
       this.img = this.imgri;
     }
   }
 
   draw() {
-    image(this.img, this.col, this.row, 45, 45);
-    // image(this.img, this.col + 4, this.row + 5, 45, 45);
+    // image(this.img, this.col, this.row, 45, 45);
+    image(this.img, this.col + 4, this.row + 5, 45, 45);
   }
 }
