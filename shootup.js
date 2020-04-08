@@ -1,4 +1,4 @@
-class Shoot {
+class Shootup {
   constructor() {
     this.width = SQUARE_SIDE;
     this.height = SQUARE_SIDE;
@@ -12,8 +12,10 @@ class Shoot {
     this.img = loadImage("assets/cake.png");
   }
   draw() {
-    this.x -= 2;
-    this.y -= 2;
+    frameRate(60);
+    this.x -= 1;
+    this.y -= 1;
+    console.log(this.x, this.y, trump.x, trump.y);
 
     // console.log(this.index % 4);
     // if (frameCount % 10 === 0) {
@@ -22,21 +24,14 @@ class Shoot {
     image(this.img, this.x, this.y, this.width, this.height);
   }
 
-  collides(trump) {
-    let xCollision =
-      (this.x > trump.x && this.x < trump.x + trump.width) ||
-      (this.x + this.width > trump.x &&
-        this.x + this.width < trump.x + trump.width);
+  collides() {
+    let xCollision = this.x < trump.x * 50 + 45 && this.x + 50 > trump.x * 50;
+    let yCollision = this.y < trump.y * 50 + 45 && this.y + 50 > trump.y * 50;
 
-    let yCollision =
-      (this.y > trump.y && this.y < trump.y + trump.height) ||
-      (this.y + this.height > trump.y &&
-        this.y + this.height < trump.y + trump.height);
-    let collision = xCollision && yCollision;
     if (xCollision && yCollision) {
-      console.log("corona make you Game Over");
+      // console.log("good");
       game.endGame();
     }
-    return collision;
   }
+  //
 }

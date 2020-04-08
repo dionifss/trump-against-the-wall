@@ -20,9 +20,9 @@ class Door {
   drawDoor() {
     image(this.img, 50 * this.x, 50 * this.y, this.ximg, this.yimg);
   }
-  drawCake() {
-    image(this.cake, 50 * this.x, 50 * this.y, 20, 20);
-  }
+  // drawCake() {
+  //   image(this.cake, 50 * this.x, 50 * this.y, 20, 20);
+  // }
 
   movingDoor() {
     //     // console.log("dioni´s clubs is better");

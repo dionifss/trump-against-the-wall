@@ -18,7 +18,8 @@ const door41 = new Door(50, 50, 1, 5, 3, 3);
 const door42 = new Door(50, 50, 1, 6, 3, 3);
 const door51 = new Door(50, 50, 1, 5, 4, 4);
 const door52 = new Door(50, 50, 1, 6, 4, 4);
-const cake1 = new Shoot();
+const cake1up = new Shootup();
+const cake1do = new Shootdo();
 
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
@@ -53,7 +54,8 @@ function preload() {
   door42.preload();
   door51.preload();
   door52.preload();
-  cake1.preload();
+  cake1up.preload();
+  cake1do.preload();
 
   coronimg = loadImage("assets/corona.png");
 
@@ -147,7 +149,11 @@ function draw() {
   door51.drawDoor();
   door52.drawDoor();
 
-  cake1.draw();
+  cake1up.draw();
+
+  cake1do.draw();
+  cake1up.collides();
+  cake1do.collides();
 
   if (frameCount % 7 == 0) {
     espiral(0);
@@ -156,7 +162,7 @@ function draw() {
     elem.drawMoving();
   });
   trump.draw();
-  cake1.collides(trump);
+
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
   if (game.finished == true) {
