@@ -24,6 +24,7 @@ let imgcake;
 let imgcake1;
 let imgcake2;
 let champions;
+let counter = 0;
 
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
@@ -124,7 +125,12 @@ function draw() {
     return;
   }
   document.querySelector("#level").innerHTML = game.level;
-  document.querySelector("#time").innerHTML = game.level;
+  if (game.inicio) {
+    if (frameCount % 60 == 0) {
+      counter++;
+    }
+    document.querySelector("#time").innerHTML = counter;
+  }
 
   game.drawGrid();
   firstsquare.drawSquares();
