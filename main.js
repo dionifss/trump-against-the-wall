@@ -23,6 +23,7 @@ const door52 = new Door(50, 50, 1, 6, 4, 4);
 let imgcake;
 let imgcake1;
 let imgcake2;
+let champions;
 
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
@@ -315,6 +316,8 @@ function draw() {
   }
   if (game.trumpHitTheFlag && game.level === 3) {
     noLoop();
+    amerGreat.stop();
+    song.stop();
     background(120, 120, 120);
     textSize(60);
     textFont("Georgia");
@@ -349,6 +352,9 @@ function keyPressed() {
     game.inicio = true;
   }
   if (keyCode == 32 && game.finished) {
+    window.location.reload();
+  }
+  if (keyCode == 32 && game.trumpHitTheFlag && game.level === 3) {
     window.location.reload();
   }
 }
