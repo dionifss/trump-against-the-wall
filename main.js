@@ -125,52 +125,7 @@ function draw() {
   }
   document.querySelector("#level").innerHTML = game.level;
   document.querySelector("#time").innerHTML = game.level;
-  if (game.trumpHitTheFlag && game.level === 1) {
-    trump.col = 0;
-    trump.row = 0;
-    trump.x = 0;
-    trump.y = 0;
-    trump.squarePosition = 0;
-    arrcoronas = [];
-    coronaX = WIDTH - SQUARE_SIDE;
-    coronaY = HEIGHT - SQUARE_SIDE;
-    game.trumpHitTheFlag = false;
-    game.arrCakes = [];
-    game.arrCakes1 = [];
-    coronimg = coronaimg2;
-    imgcake = imgcake1;
-    game.level += 1;
-    frameCount === 0;
-  }
-  if (game.trumpHitTheFlag && game.level === 2) {
-    trump.col = 0;
-    trump.row = 0;
-    trump.x = 0;
-    trump.y = 0;
-    trump.squarePosition = 0;
-    arrcoronas = [];
-    game.arrCakes1 = [];
-    coronaX = WIDTH - SQUARE_SIDE;
-    coronaY = HEIGHT - SQUARE_SIDE;
-    game.trumpHitTheFlag = false;
-    game.arrCakes = [];
-    coronimg = coronaimg3;
-    imgcake = imgcake2;
-    game.level += 1;
-  }
-  if (game.trumpHitTheFlag && game.level === 3) {
-    noLoop();
-    amerGreat.stop();
-    song.stop();
-    background(120, 120, 120);
-    textSize(60);
-    textFont("Georgia");
-    fill("rgb(0,255,0)");
-    image(imgagain, 140, 400, 300, 100);
-    image(imgtrumchamp, 120, 50, 350, 350);
-    champions.setVolume(0.3);
-    champions.play();
-  }
+
   game.drawGrid();
   firstsquare.drawSquares();
   secondsquare.drawSquares();
@@ -312,6 +267,53 @@ function draw() {
 
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
+
+  if (game.trumpHitTheFlag && game.level === 1) {
+    trump.col = 0;
+    trump.row = 0;
+    trump.x = 0;
+    trump.y = 0;
+    trump.squarePosition = 0;
+    arrcoronas = [];
+    coronaX = WIDTH - SQUARE_SIDE;
+    coronaY = HEIGHT - SQUARE_SIDE;
+    game.trumpHitTheFlag = false;
+    game.arrCakes = [];
+    game.arrCakes1 = [];
+    coronimg = coronaimg2;
+    imgcake = imgcake1;
+    game.level += 1;
+    frameCount === 0;
+  }
+  if (game.trumpHitTheFlag && game.level === 2) {
+    trump.col = 0;
+    trump.row = 0;
+    trump.x = 0;
+    trump.y = 0;
+    trump.squarePosition = 0;
+    arrcoronas = [];
+    game.arrCakes1 = [];
+    coronaX = WIDTH - SQUARE_SIDE;
+    coronaY = HEIGHT - SQUARE_SIDE;
+    game.trumpHitTheFlag = false;
+    game.arrCakes = [];
+    coronimg = coronaimg3;
+    imgcake = imgcake2;
+    game.level += 1;
+  }
+  if (game.trumpHitTheFlag && game.level === 3) {
+    noLoop();
+    amerGreat.stop();
+    song.stop();
+    background(120, 120, 120);
+    textSize(60);
+    textFont("Georgia");
+    fill("rgb(0,255,0)");
+    image(imgagain, 140, 400, 300, 100);
+    image(imgtrumchamp, 120, 50, 350, 350);
+    champions.setVolume(0.3);
+    champions.play();
+  }
 
   if (game.finished) {
     noLoop();
