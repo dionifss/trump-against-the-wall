@@ -160,17 +160,43 @@ function draw() {
   door51.drawDoor();
   door52.drawDoor();
 
-  if (corona.start) {
-    if (frameCount % 7 == 0) {
-      espiral(0);
+  if (game.level === 1 && trump.squarePosition > 0) {
+    if (corona.start) {
+      if (frameCount % 7 == 0) {
+        espiral(0);
+      }
+      arrcoronas.forEach((elem) => {
+        elem.drawMoving();
+      });
     }
-    arrcoronas.forEach((elem) => {
-      elem.drawMoving();
-    });
-  }
-  if (frameCount == 600) {
+
     corona.startmov();
   }
+  if (game.level === 2 && trump.squarePosition > 0) {
+    if (corona.start) {
+      if (frameCount % 7 == 0) {
+        espiral(0);
+      }
+      arrcoronas.forEach((elem) => {
+        elem.drawMoving();
+      });
+    }
+
+    corona.startmov();
+  }
+  if (game.level === 3 && trump.squarePosition > 0) {
+    if (corona.start) {
+      if (frameCount % 7 == 0) {
+        espiral(0);
+      }
+      arrcoronas.forEach((elem) => {
+        elem.drawMoving();
+      });
+    }
+
+    corona.startmov();
+  }
+
   if (frameCount % (350 - game.level * 75) == 0) {
     game.arrCakes.push(new Shootdo());
   }
@@ -208,6 +234,7 @@ function draw() {
     coronimg = coronaimg2;
     imgcake = imgcake1;
     game.level += 1;
+    frameCount === 0;
   }
   if (game.trumpHitTheFlag && game.level === 2) {
     trump.col = 0;
