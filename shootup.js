@@ -14,12 +14,8 @@ class Shootup {
   draw() {
     this.x -= 1;
     this.y -= 1;
-    console.log(this.x, this.y, trump.x, trump.y);
+    // console.log(this.x, this.y, trump.x, trump.y);
 
-    // console.log(this.index % 4);
-    // if (frameCount % 10 === 0) {
-    //   this.index++;
-    // }
     image(imgcake, this.x, this.y, this.width, this.height);
   }
 

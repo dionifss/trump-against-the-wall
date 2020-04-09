@@ -21,6 +21,8 @@ const door52 = new Door(50, 50, 1, 6, 4, 4);
 // const cake1up = new Shootup();
 // const cake1do = new Shootdo();
 let imgcake;
+let imgcake1;
+let imgcake2;
 
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
@@ -41,6 +43,7 @@ trump.doors.push(
 let slider;
 let coronimg;
 let coronaimg2;
+let coronaimg3;
 
 function preload() {
   trump.preload();
@@ -62,9 +65,12 @@ function preload() {
   // let = imgovery = createImg("assets/cake.png");
   imgover = loadImage("assets/gif-funeral.gif");
   coronimg = loadImage("assets/corona.png");
-  coronaimg2 = loadImage("assets/cake.png");
+  coronaimg2 = loadImage("assets/trumpwall.png");
+  coronaimg3 = loadImage("assets/chinease.png");
   amerGreat = loadSound("music/americaGreatAgain.mp3");
-  imgcake = loadImage("assets/cake.png");
+  imgcake = loadImage("assets/papertoilet.png");
+  imgcake1 = loadImage("assets/mexicano.png");
+  imgcake2 = loadImage("assets/huawei.png");
 }
 function setup() {
   createCanvas(WIDTH, HEIGHT).position(120, 95);
@@ -175,7 +181,6 @@ function draw() {
   });
 
   if (frameCount % (350 - game.level * 75) == 0) {
-    //150
     game.arrCakes1.push(new Shootup());
   }
 
@@ -183,18 +188,13 @@ function draw() {
     elem.draw();
     elem.collides();
   });
-  // cake1up.draw();
-  // cake1do.draw();
-
-  // cake1up.collides();
-  // cake1do.collides();
 
   trump.draw();
 
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
 
-  if (game.trumpHitTheFlag && game.level === 0) {
+  if (game.trumpHitTheFlag && game.level === 1) {
     trump.col = 0;
     trump.row = 0;
     trump.x = 0;
@@ -206,9 +206,10 @@ function draw() {
     game.trumpHitTheFlag = false;
     game.arrCakes = [];
     coronimg = coronaimg2;
+    imgcake = imgcake1;
     game.level += 1;
   }
-  if ((game.trumpHitTheFlag && game.level === 1) || game.level === 2) {
+  if (game.trumpHitTheFlag && game.level === 2) {
     trump.col = 0;
     trump.row = 0;
     trump.x = 0;
@@ -219,8 +220,17 @@ function draw() {
     coronaY = HEIGHT - SQUARE_SIDE;
     game.trumpHitTheFlag = false;
     game.arrCakes = [];
-    coronimg = coronaimg2;
+    coronimg = coronaimg3;
+    imgcake = imgcake2;
     game.level += 1;
+  }
+  if (game.trumpHitTheFlag && game.level === 3) {
+    noLoop();
+    background(120, 120, 120);
+    textSize(60);
+    textFont("Georgia");
+    fill("rgb(0,255,0)");
+    text("YOU CONQUER THE WORLD", 120, 90);
   }
 
   if (game.finished) {

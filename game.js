@@ -5,7 +5,7 @@ class Game {
     this.arrCakes = [];
     this.arrCakes1 = [];
     this.trumpHitTheFlag = false;
-    this.level = 0;
+    this.level = 1;
   }
   drawGrid() {
     createCanvas(WIDTH, HEIGHT);
