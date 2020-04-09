@@ -59,15 +59,16 @@ function preload() {
   door42.preload();
   door51.preload();
   door52.preload();
-  // cake1up.preload();
-  // cake1do.preload();
-
+  imgtrumchamp = loadImage("assets/trumpchamp.png");
+  imgagain = loadImage("assets/playagain.png");
+  imginit = loadImage("assets/initialpage.png");
   // let = imgovery = createImg("assets/cake.png");
   imgover = loadImage("assets/gif-funeral.gif");
   coronimg = loadImage("assets/corona.png");
   coronaimg2 = loadImage("assets/trumpwall.png");
   coronaimg3 = loadImage("assets/chinease.png");
   amerGreat = loadSound("music/americaGreatAgain.mp3");
+  champions = loadSound("music/champions.mp3");
   imgcake = loadImage("assets/papertoilet.png");
   imgcake1 = loadImage("assets/mexicano.png");
   imgcake2 = loadImage("assets/huawei.png");
@@ -111,6 +112,16 @@ function espiral(limite) {
   arrcoronas.push(new Movingthing(coronaX, coronaY, 1, 1));
 }
 function draw() {
+  if (!game.inicio) {
+    background(120, 120, 120);
+    textSize(40);
+    textFont("helvetica");
+    fill("rgb(0,0,0)");
+    image(imginit, 130, 120, 340, 320);
+    text("ENJOY YOUR GAME", 120, 90);
+
+    return;
+  }
   game.drawGrid();
   firstsquare.drawSquares();
   secondsquare.drawSquares();
@@ -171,6 +182,23 @@ function draw() {
     }
 
     corona.startmov();
+    if (frameCount % (350 - game.level * 75) == 0) {
+      game.arrCakes.push(new Shootdo());
+    }
+
+    game.arrCakes.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
+
+    if (frameCount % (350 - game.level * 75) == 0) {
+      game.arrCakes1.push(new Shootup());
+    }
+
+    game.arrCakes1.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
   }
   if (game.level === 2 && trump.squarePosition > 0) {
     if (corona.start) {
@@ -183,6 +211,23 @@ function draw() {
     }
 
     corona.startmov();
+    if (frameCount % (350 - game.level * 75) == 0) {
+      game.arrCakes.push(new Shootdo());
+    }
+
+    game.arrCakes.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
+
+    if (frameCount % (350 - game.level * 75) == 0) {
+      game.arrCakes1.push(new Shootup());
+    }
+
+    game.arrCakes1.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
   }
   if (game.level === 3 && trump.squarePosition > 0) {
     if (corona.start) {
@@ -195,25 +240,42 @@ function draw() {
     }
 
     corona.startmov();
+    if (frameCount % (350 - game.level * 75) == 0) {
+      game.arrCakes.push(new Shootdo());
+    }
+
+    game.arrCakes.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
+
+    if (frameCount % (350 - game.level * 75) == 0) {
+      game.arrCakes1.push(new Shootup());
+    }
+
+    game.arrCakes1.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
   }
 
-  if (frameCount % (350 - game.level * 75) == 0) {
-    game.arrCakes.push(new Shootdo());
-  }
+  // if (frameCount % (350 - game.level * 75) == 0) {
+  //   game.arrCakes.push(new Shootdo());
+  // }
 
-  game.arrCakes.forEach((elem) => {
-    elem.draw();
-    elem.collides();
-  });
+  // game.arrCakes.forEach((elem) => {
+  //   elem.draw();
+  //   elem.collides();
+  // });
 
-  if (frameCount % (350 - game.level * 75) == 0) {
-    game.arrCakes1.push(new Shootup());
-  }
+  // if (frameCount % (350 - game.level * 75) == 0) {
+  //   game.arrCakes1.push(new Shootup());
+  // }
 
-  game.arrCakes1.forEach((elem) => {
-    elem.draw();
-    elem.collides();
-  });
+  // game.arrCakes1.forEach((elem) => {
+  //   elem.draw();
+  //   elem.collides();
+  // });
 
   trump.draw();
 
@@ -257,26 +319,38 @@ function draw() {
     textSize(60);
     textFont("Georgia");
     fill("rgb(0,255,0)");
-    text("YOU CONQUER THE WORLD", 120, 90);
+    image(imgagain, 140, 400, 300, 100);
+    image(imgtrumchamp, 120, 50, 350, 350);
+    champions.setVolume(0.3);
+    champions.play();
   }
 
   if (game.finished) {
     noLoop();
-    song.setVolume(0.3);
 
+    song.setVolume(0.3);
     background(120, 120, 120);
     textSize(60);
     textFont("Georgia");
     fill("rgb(0,255,0)");
     text("GAME OVER", 120, 90);
     // imgover.show().position(50, 350);
+    textSize(40);
+    fill("rgb(0,0,0)");
 
     image(imgover, 130, 120, 340, 250);
     // image(imgover, 1, 1);
+    image(imgagain, 140, 400, 300, 100);
   }
 }
 function keyPressed() {
   trump.keys();
+  if (keyCode == 32) {
+    game.inicio = true;
+  }
+  if (keyCode == 32 && game.finished) {
+    window.location.reload();
+  }
 }
 function coronafinallyCrashTrump(arrcoronas, a) {
   arrcoronas.forEach(function (corona) {

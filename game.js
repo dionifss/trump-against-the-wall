@@ -1,5 +1,6 @@
 class Game {
   constructor() {
+    this.inicio = false;
     this.start = false;
     this.finished = false;
     this.arrCakes = [];

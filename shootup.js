@@ -20,8 +20,10 @@ class Shootup {
   }
 
   collides() {
-    let xCollision = this.x < trump.x * 50 + 45 && this.x + 50 > trump.x * 50;
-    let yCollision = this.y < trump.y * 50 + 45 && this.y + 50 > trump.y * 50;
+    let xCollision =
+      this.x + 10 < trump.x * 50 + 45 && this.x + 40 > trump.x * 50;
+    let yCollision =
+      this.y + 10 < trump.y * 50 + 45 && this.y + 40 > trump.y * 50;
 
     if (xCollision && yCollision) {
       // console.log("good");
