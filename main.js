@@ -1,6 +1,6 @@
 const game = new Game();
 const trump = new Player(0, 0, 0, 0);
-const firstsquare = new Squares(50, 1, 450, 200, 250, 0);
+const firstsquare = new Squares(50, 1, 450, 207, 0, 0);
 const secondsquare = new Squares(100, 2, 350, 100, 0, 100);
 const thirdsquate = new Squares(150, 3, 250, 0, 100, 200);
 const fourthquate = new Squares(200, 4, 150, 50, 100, 50);
@@ -25,6 +25,7 @@ let imgcake1;
 let imgcake2;
 let champions;
 let counter = 0;
+let backgroundimg;
 
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
@@ -74,6 +75,9 @@ function preload() {
   imgcake = loadImage("assets/papertoilet.png");
   imgcake1 = loadImage("assets/mexicano.png");
   imgcake2 = loadImage("assets/huawei.png");
+  backgroundimg = loadImage("assets/backgroundcorona.jpg");
+  imgmexico = loadImage("assets/backgroundmexico.jpg");
+  imgchina = loadImage("assets/backgroundchina.jpg");
 }
 function setup() {
   createCanvas(WIDTH, HEIGHT).position(120, 95);
@@ -290,6 +294,8 @@ function draw() {
     imgcake = imgcake1;
     game.level += 1;
     frameCount === 0;
+    // imgtrumchamp = coronaimg2;
+    backgroundimg = imgmexico;
   }
   if (game.trumpHitTheFlag && game.level === 2) {
     trump.col = 0;
@@ -306,6 +312,7 @@ function draw() {
     coronimg = coronaimg3;
     imgcake = imgcake2;
     game.level += 1;
+    backgroundimg = imgchina;
   }
   if (game.trumpHitTheFlag && game.level === 3) {
     noLoop();

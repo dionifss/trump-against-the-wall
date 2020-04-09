@@ -10,7 +10,7 @@ class Game {
   }
   drawGrid() {
     createCanvas(WIDTH, HEIGHT);
-    background("lightblue");
+    background(backgroundimg);
 
     for (let i = 0; i <= HEIGHT; i += SQUARE_SIDE) {
       line(0, i, WIDTH, i);
