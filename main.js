@@ -165,7 +165,7 @@ function draw() {
   if (frameCount == 600) {
     corona.startmov();
   }
-  if (frameCount % (350 - game.level * 100) == 0) {
+  if (frameCount % (350 - game.level * 75) == 0) {
     game.arrCakes.push(new Shootdo());
   }
 
@@ -174,7 +174,7 @@ function draw() {
     elem.collides();
   });
 
-  if (frameCount % (350 - game.level * 100) == 0) {
+  if (frameCount % (350 - game.level * 75) == 0) {
     //150
     game.arrCakes1.push(new Shootup());
   }
