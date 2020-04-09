@@ -1,9 +1,9 @@
 const game = new Game();
 const trump = new Player(0, 0, 0, 0);
 const firstsquare = new Squares(50, 1, 450, 207, 0, 0);
-const secondsquare = new Squares(100, 2, 350, 100, 0, 100);
+const secondsquare = new Squares(100, 2, 350, 155, 0, 244);
 const thirdsquate = new Squares(150, 3, 250, 0, 100, 200);
-const fourthquate = new Squares(200, 4, 150, 50, 100, 50);
+const fourthquate = new Squares(200, 4, 150, 0, 222, 26);
 const fifthquate = new Squares(250, 5, 50, 220, 0, 200);
 const corona = new Movingthing(50, 50, 3, 0);
 let arrcoronas = [];
