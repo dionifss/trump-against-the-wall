@@ -7,7 +7,7 @@ div {
   font-family: "Bungee Shade", cursive;
 }
 h1 {
-  margin-left: 140px;
+  margin-left: 133px;
 }
 
 /* body {
@@ -18,7 +18,7 @@ h1 {
   margin-top: 40px;
 }
 .results {
-  margin-left: 140px;
+  margin-left: 120px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
