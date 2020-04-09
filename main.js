@@ -65,8 +65,7 @@ function preload() {
   imgtrumchamp = loadImage("assets/trumpchamp.png");
   imgagain = loadImage("assets/playagain.png");
   imginit = loadImage("assets/initialpage.png");
-  // let = imgovery = createImg("assets/cake.png");
-  imgover = loadImage("assets/gif-funeral.gif");
+  imgovery = createImg("assets/gif-funeral.gif").hide();
   coronimg = loadImage("assets/corona.png");
   coronaimg2 = loadImage("assets/trumpwall.png");
   coronaimg3 = loadImage("assets/chinease.png");
@@ -78,6 +77,8 @@ function preload() {
   backgroundimg = loadImage("assets/backgroundcorona.jpg");
   imgmexico = loadImage("assets/backgroundmexico.jpg");
   imgchina = loadImage("assets/backgroundchina.jpg");
+  imggameover = loadImage("assets/gameover.png");
+  backgroundgameover = loadImage("assets/trumpgameover.png");
 }
 function setup() {
   createCanvas(WIDTH, HEIGHT).position(120, 95);
@@ -332,18 +333,14 @@ function draw() {
     noLoop();
 
     song.setVolume(0.3);
-    background(120, 120, 120);
-    textSize(60);
-    textFont("Georgia");
-    fill("rgb(0,255,0)");
-    text("GAME OVER", 120, 90);
-    // imgover.show().position(50, 350);
+    background(backgroundgameover);
+
+    image(imggameover, 100, -30, 400, 215);
+
     textSize(40);
     fill("rgb(0,0,0)");
-
-    image(imgover, 130, 120, 340, 250);
-    // image(imgover, 1, 1);
     image(imgagain, 140, 400, 300, 100);
+    imgovery.show() = createImg("assets/gif-funeral.gif");
   }
 }
 function keyPressed() {

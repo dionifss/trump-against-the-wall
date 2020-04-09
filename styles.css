@@ -36,3 +36,10 @@ p,
   margin-left: -35px;
   margin-right: 30px;
 }
+
+body > img {
+  z-index: 5;
+  position: relative;
+  margin-top: 150px;
+  margin-left: 250px;
+}
