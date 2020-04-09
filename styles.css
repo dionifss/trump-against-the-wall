@@ -1,6 +1,38 @@
-h1 {
+h1,
+p,
+div {
   font-weight: 100;
   text-align: left;
-  margin-left: 140px;
+
   font-family: "Bungee Shade", cursive;
+}
+h1 {
+  margin-left: 140px;
+}
+
+/* body {
+  display: flex;
+} */
+
+#defaultCanvas0 {
+  margin-top: 40px;
+}
+.results {
+  margin-left: 140px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+}
+#negative {
+  margin-left: -30px;
+}
+p,
+.numb {
+  margin: 15px;
+}
+
+#negative {
+  margin-left: -35px;
+  margin-right: 30px;
 }
