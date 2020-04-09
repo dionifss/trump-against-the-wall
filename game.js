@@ -2,6 +2,10 @@ class Game {
   constructor() {
     this.start = false;
     this.finished = false;
+    this.arrCakes = [];
+    this.arrCakes1 = [];
+    this.trumpHitTheFlag = false;
+    this.level = 0;
   }
   drawGrid() {
     createCanvas(WIDTH, HEIGHT);
@@ -16,7 +20,6 @@ class Game {
   }
   endGame() {
     this.finished = true;
-    console.log("andre");
   }
 }
 

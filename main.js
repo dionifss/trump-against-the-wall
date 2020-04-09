@@ -18,8 +18,9 @@ const door41 = new Door(50, 50, 1, 5, 3, 3);
 const door42 = new Door(50, 50, 1, 6, 3, 3);
 const door51 = new Door(50, 50, 1, 5, 4, 4);
 const door52 = new Door(50, 50, 1, 6, 4, 4);
-const cake1up = new Shootup();
-const cake1do = new Shootdo();
+// const cake1up = new Shootup();
+// const cake1do = new Shootdo();
+let imgcake;
 
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
@@ -39,6 +40,7 @@ trump.doors.push(
 );
 let slider;
 let coronimg;
+let coronaimg2;
 
 function preload() {
   trump.preload();
@@ -54,16 +56,18 @@ function preload() {
   door42.preload();
   door51.preload();
   door52.preload();
-  cake1up.preload();
-  cake1do.preload();
+  // cake1up.preload();
+  // cake1do.preload();
 
   // let = imgovery = createImg("assets/cake.png");
   imgover = loadImage("assets/gif-funeral.gif");
   coronimg = loadImage("assets/corona.png");
+  coronaimg2 = loadImage("assets/cake.png");
   amerGreat = loadSound("music/americaGreatAgain.mp3");
+  imgcake = loadImage("assets/cake.png");
 }
 function setup() {
-  createCanvas(WIDTH, HEIGHT);
+  createCanvas(WIDTH, HEIGHT).position(120, 95);
   song = loadSound("music/musicmorenos.mp3", loaded);
   song.setVolume(0.05);
   button = createButton("🛑music");
@@ -107,35 +111,35 @@ function draw() {
   thirdsquate.drawSquares();
   fourthquate.drawSquares();
   fifthquate.drawSquares();
-  if (frameCount % 20 == 0) {
+  if (frameCount % (20 - game.level * 2) == 0) {
     door1.movingMarkusdoor();
   }
-  if (frameCount % 20 == 0) {
+  if (frameCount % (20 - game.level * 2) == 0) {
     door2.movingMarkusdoor();
   }
 
-  if (frameCount % 23 == 0) {
+  if (frameCount % (23 - game.level * 2) == 0) {
     door21.movingMarkusdoor();
   }
-  if (frameCount % 23 == 0) {
+  if (frameCount % (23 - game.level * 2) == 0) {
     door22.movingMarkusdoor();
   }
-  if (frameCount % 21 == 0) {
+  if (frameCount % (21 - game.level * 2) == 0) {
     door31.movingMarkusdoor();
   }
-  if (frameCount % 21 == 0) {
+  if (frameCount % (21 - game.level * 2) == 0) {
     door32.movingMarkusdoor();
   }
-  if (frameCount % 18 == 0) {
+  if (frameCount % (18 - game.level * 2) == 0) {
     door41.movingMarkusdoor();
   }
-  if (frameCount % 18 == 0) {
+  if (frameCount % (18 - game.level * 2) == 0) {
     door42.movingMarkusdoor();
   }
-  if (frameCount % 15 == 0) {
+  if (frameCount % (15 - game.level * 2) == 0) {
     door51.movingMarkusdoor();
   }
-  if (frameCount % 15 == 0) {
+  if (frameCount % (15 - game.level * 2) == 0) {
     door52.movingMarkusdoor();
   }
   flag.drawFlag();
@@ -150,23 +154,76 @@ function draw() {
   door51.drawDoor();
   door52.drawDoor();
 
-  cake1up.draw();
-
-  cake1do.draw();
-  cake1up.collides();
-  cake1do.collides();
-
-  if (frameCount % 7 == 0) {
-    espiral(0);
+  if (corona.start) {
+    if (frameCount % 7 == 0) {
+      espiral(0);
+    }
+    arrcoronas.forEach((elem) => {
+      elem.drawMoving();
+    });
   }
-  arrcoronas.forEach((elem) => {
-    elem.drawMoving();
+  if (frameCount == 600) {
+    corona.startmov();
+  }
+  if (frameCount % (350 - game.level * 100) == 0) {
+    game.arrCakes.push(new Shootdo());
+  }
+
+  game.arrCakes.forEach((elem) => {
+    elem.draw();
+    elem.collides();
   });
+
+  if (frameCount % (350 - game.level * 100) == 0) {
+    //150
+    game.arrCakes1.push(new Shootup());
+  }
+
+  game.arrCakes1.forEach((elem) => {
+    elem.draw();
+    elem.collides();
+  });
+  // cake1up.draw();
+  // cake1do.draw();
+
+  // cake1up.collides();
+  // cake1do.collides();
+
   trump.draw();
 
   coronafinallyCrashTrump(arrcoronas, trump);
   trump.trumpgettheflag();
-  if (game.finished == true) {
+
+  if (game.trumpHitTheFlag && game.level === 0) {
+    trump.col = 0;
+    trump.row = 0;
+    trump.x = 0;
+    trump.y = 0;
+    trump.squarePosition = 0;
+    arrcoronas = [];
+    coronaX = WIDTH - SQUARE_SIDE;
+    coronaY = HEIGHT - SQUARE_SIDE;
+    game.trumpHitTheFlag = false;
+    game.arrCakes = [];
+    coronimg = coronaimg2;
+    game.level += 1;
+  }
+  if ((game.trumpHitTheFlag && game.level === 1) || game.level === 2) {
+    trump.col = 0;
+    trump.row = 0;
+    trump.x = 0;
+    trump.y = 0;
+    trump.squarePosition = 0;
+    arrcoronas = [];
+    coronaX = WIDTH - SQUARE_SIDE;
+    coronaY = HEIGHT - SQUARE_SIDE;
+    game.trumpHitTheFlag = false;
+    game.arrCakes = [];
+    coronimg = coronaimg2;
+    game.level += 1;
+  }
+
+  if (game.finished) {
     noLoop();
     song.setVolume(0.3);
 
@@ -175,6 +232,8 @@ function draw() {
     textFont("Georgia");
     fill("rgb(0,255,0)");
     text("GAME OVER", 120, 90);
+    // imgover.show().position(50, 350);
+
     image(imgover, 130, 120, 340, 250);
     // image(imgover, 1, 1);
   }

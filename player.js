@@ -64,6 +64,7 @@ class Player {
         amerGreat.setVolume(0.2);
         amerGreat.play();
       }
+      game.trumpHitTheFlag = true;
     }
   }
 

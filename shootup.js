@@ -12,7 +12,6 @@ class Shootup {
     this.img = loadImage("assets/cake.png");
   }
   draw() {
-    frameRate(60);
     this.x -= 1;
     this.y -= 1;
     console.log(this.x, this.y, trump.x, trump.y);
@@ -21,7 +20,7 @@ class Shootup {
     // if (frameCount % 10 === 0) {
     //   this.index++;
     // }
-    image(this.img, this.x, this.y, this.width, this.height);
+    image(imgcake, this.x, this.y, this.width, this.height);
   }
 
   collides() {

@@ -2,11 +2,16 @@ class Movingthing {
   constructor(col, row, x, y) {
     this.x = col;
     this.y = row;
+    this.start = false;
     /* this.x = x;
       this.y = y; */
   }
   preload() {
     this.img = loadImage("assets/corona.png");
+  }
+
+  startmov() {
+    this.start = true;
   }
 
   drawMoving() {

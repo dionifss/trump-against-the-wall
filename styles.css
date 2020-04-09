@@ -1,4 +1,6 @@
 h1 {
   font-weight: 100;
-  text-align: center;
+  text-align: left;
+  margin-left: 140px;
+  font-family: "Bungee Shade", cursive;
 }
