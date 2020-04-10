@@ -331,8 +331,8 @@ function draw() {
     textSize(60);
     textFont("Georgia");
     fill("rgb(0,255,0)");
-    image(imgagain, 140, 400, 300, 100);
-    image(imgtrumchamp, 120, 50, 350, 350);
+    image(imgagain, 145, 430, 300, 100);
+    image(imgtrumchamp, 115, 25, 330, 400);
     champions.setVolume(0.3);
     champions.play();
     if (counter < bestTime) {
