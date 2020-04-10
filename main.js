@@ -137,6 +137,7 @@ function draw() {
     return;
   }
   document.querySelector("#level").innerHTML = game.level;
+
   if (game.inicio) {
     if (frameCount % 60 == 0) {
       counter++;
