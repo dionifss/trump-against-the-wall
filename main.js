@@ -124,8 +124,8 @@ function draw() {
     textSize(40);
     textFont("helvetica");
     fill("rgb(0,0,0)");
-    image(imginit, 130, 120, 340, 320);
-    text("ENJOY YOUR GAME", 120, 90);
+    image(imginit, 50, 10, 500, 522);
+    // text("ENJOY YOUR GAME", 120, 90);
 
     return;
   }
