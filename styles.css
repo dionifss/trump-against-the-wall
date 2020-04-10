@@ -17,9 +17,7 @@ h1 {
 #defaultCanvas0 {
   margin-top: 40px;
 }
-
 .results {
-  margin-bottom: 30px;
   margin-left: 95px;
   display: flex;
   flex-direction: row;
