@@ -24,6 +24,13 @@ let imgcake;
 let imgcake1;
 let imgcake2;
 let champions;
+
+///Local storage
+let bestTime = localStorage.getItem("fastestTime");
+
+if (!bestTime) {
+  bestTime = 22;
+}
 let counter = 0;
 let backgroundimg;
 
@@ -327,6 +334,10 @@ function draw() {
     image(imgtrumchamp, 120, 50, 350, 350);
     champions.setVolume(0.3);
     champions.play();
+    if (counter < bestTime) {
+      localStorage.setItem("fastestTime", counter);
+      document.querySelector("#best").innerHTML = counter;
+    }
   }
 
   if (game.finished) {
@@ -378,5 +389,5 @@ function coronafinallyCrashTrump(arrcoronas, a) {
     }
   });
 }
-
+document.querySelector("#best").innerHTML = bestTime;
 document.querySelector("#level").innerHTML = game.level;
