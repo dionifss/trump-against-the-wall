@@ -5,7 +5,7 @@ div {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
 }
-img {
+body > container > img {
   margin-top: 10px;
   margin-left: 93px;
   width: 640px;
