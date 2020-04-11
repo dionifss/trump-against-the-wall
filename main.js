@@ -29,7 +29,7 @@ let champions;
 let bestTime = localStorage.getItem("fastestTime");
 
 if (!bestTime) {
-  bestTime = 22;
+  bestTime = 20;
 }
 let counter = 0;
 let backgroundimg;
