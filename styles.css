@@ -14,7 +14,7 @@ h1 {
   display: flex;
 } */
 
-#defaultCanvas0 {
+.p5Canvas {
   margin-top: 40px;
 }
 .results {
