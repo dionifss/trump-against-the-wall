@@ -5,10 +5,16 @@ div {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
 }
-h1 {
+img {
+  margin-top: 10px;
+  margin-left: 90px;
+  width: 47%;
+  height: 47%;
+}
+/* h1 {
   margin-left: 200px;
   margin-bottom: 10px;
-}
+} */
 
 /* body {
   display: flex;
