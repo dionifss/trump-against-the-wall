@@ -30,7 +30,7 @@ let champions;
 let bestTime = localStorage.getItem("fastestTime");
 
 if (!bestTime) {
-  bestTime = 23;
+  bestTime = 25;
 }
 let counter = 0;
 let backgroundimg;
@@ -336,7 +336,7 @@ function draw() {
     game.arrCakes1 = [];
     coronimg = coronaimg2;
     imgcake = imgcake1;
-    game.level += 1;
+    game.level += 2;
     frameCount === 0;
     // imgtrumchamp = coronaimg2;
     backgroundimg = imgmexico;
