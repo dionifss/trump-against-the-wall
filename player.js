@@ -33,22 +33,22 @@ class Player {
   }
 
   keys() {
-    if (keyCode === 37) {
+    if (keyCode === 37 && game.inicio) {
       if (this.col !== 0) {
         this.moveLeft();
         this.img = this.imgle;
       }
-    } else if (keyCode === 39) {
+    } else if (keyCode === 39 && game.inicio) {
       if (this.col !== WIDTH * (11 / 12)) {
         this.moveRight();
         this.img = this.imgri;
       }
-    } else if (keyCode === 38) {
+    } else if (keyCode === 38 && game.inicio) {
       if (this.row !== 0) {
         this.moveUp();
         this.img = this.imgup;
       }
-    } else if (keyCode === 40) {
+    } else if (keyCode === 40 && game.inicio) {
       if (this.row !== HEIGHT * (10 / 11)) {
         this.moveDown();
         this.img = this.imgdo;
