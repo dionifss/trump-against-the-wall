@@ -23,13 +23,14 @@ const door52 = new Door(50, 50, 1, 6, 4, 4);
 let imgcake;
 let imgcake1;
 let imgcake2;
+let imgcake3;
 let champions;
 
 ///Local storage
 let bestTime = localStorage.getItem("fastestTime");
 
 if (!bestTime) {
-  bestTime = 18;
+  bestTime = 23;
 }
 let counter = 0;
 let backgroundimg;
@@ -54,6 +55,7 @@ let slider;
 let coronimg;
 let coronaimg2;
 let coronaimg3;
+let coronaimg4;
 
 function preload() {
   trump.preload();
@@ -76,14 +78,17 @@ function preload() {
   coronimg = loadImage("assets/corona.png");
   coronaimg2 = loadImage("assets/trumpwall.png");
   coronaimg3 = loadImage("assets/chinease.png");
+  coronaimg4 = loadImage("assets/mariocorona.png");
   amerGreat = loadSound("music/americaGreatAgain.mp3");
   champions = loadSound("music/champions.mp3");
   imgcake = loadImage("assets/papertoilet.png");
   imgcake1 = loadImage("assets/mexicano.png");
   imgcake2 = loadImage("assets/huawei.png");
+  imgcake3 = loadImage("assets/marioshoot.png");
   backgroundimg = loadImage("assets/backgroundcorona.jpg");
   imgmexico = loadImage("assets/backgroundmexico.jpg");
   imgchina = loadImage("assets/backgroundchina.jpg");
+  imgmariobg = loadImage("assets/mariobackground.jpg");
   imggameover = loadImage("assets/gameover.png");
   backgroundgameover = loadImage("assets/trumpgameover.png");
 }
@@ -196,7 +201,7 @@ function draw() {
 
   if (game.level === 1 && trump.squarePosition > 0) {
     if (corona.start) {
-      if (frameCount % 7 == 0) {
+      if (frameCount % 5 == 0) {
         espiral(0);
       }
       arrcoronas.forEach((elem) => {
@@ -225,7 +230,7 @@ function draw() {
   }
   if (game.level === 2 && trump.squarePosition > 0) {
     if (corona.start) {
-      if (frameCount % 7 == 0) {
+      if (frameCount % 4 == 0) {
         espiral(0);
       }
       arrcoronas.forEach((elem) => {
@@ -254,7 +259,7 @@ function draw() {
   }
   if (game.level === 3 && trump.squarePosition > 0) {
     if (corona.start) {
-      if (frameCount % 7 == 0) {
+      if (frameCount % 3 == 0) {
         espiral(0);
       }
       arrcoronas.forEach((elem) => {
@@ -263,7 +268,7 @@ function draw() {
     }
 
     corona.startmov();
-    if (frameCount % (350 - game.level * 75) == 0) {
+    if (frameCount % (350 - game.level * 65) == 0) {
       game.arrCakes.push(new Shootdo());
     }
 
@@ -272,7 +277,37 @@ function draw() {
       elem.collides();
     });
 
-    if (frameCount % (350 - game.level * 75) == 0) {
+    if (frameCount % (350 - game.level * 65) == 0) {
+      game.arrCakes1.push(new Shootup());
+    }
+
+    game.arrCakes1.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
+  }
+
+  if (game.level === 4 && trump.squarePosition > 0) {
+    if (corona.start) {
+      if (frameCount % 3 == 0) {
+        espiral(0);
+      }
+      arrcoronas.forEach((elem) => {
+        elem.drawMoving();
+      });
+    }
+
+    corona.startmov();
+    if (frameCount % (350 - game.level * 55) == 0) {
+      game.arrCakes.push(new Shootdo());
+    }
+
+    game.arrCakes.forEach((elem) => {
+      elem.draw();
+      elem.collides();
+    });
+
+    if (frameCount % (350 - game.level * 55) == 0) {
       game.arrCakes1.push(new Shootup());
     }
 
@@ -323,7 +358,25 @@ function draw() {
     game.level += 1;
     backgroundimg = imgchina;
   }
+
   if (game.trumpHitTheFlag && game.level === 3) {
+    trump.col = 0;
+    trump.row = 0;
+    trump.x = 0;
+    trump.y = 0;
+    trump.squarePosition = 0;
+    arrcoronas = [];
+    game.arrCakes1 = [];
+    coronaX = WIDTH - SQUARE_SIDE;
+    coronaY = HEIGHT - SQUARE_SIDE;
+    game.trumpHitTheFlag = false;
+    game.arrCakes = [];
+    coronimg = coronaimg4;
+    imgcake = imgcake3;
+    game.level += 1;
+    backgroundimg = imgmariobg;
+  }
+  if (game.trumpHitTheFlag && game.level === 4) {
     noLoop();
     amerGreat.stop();
     song.stop();
@@ -363,7 +416,7 @@ function keyPressed() {
   if (keyCode == 32 && game.finished) {
     window.location.reload();
   }
-  if (keyCode == 32 && game.trumpHitTheFlag && game.level === 3) {
+  if (keyCode == 32 && game.trumpHitTheFlag && game.level === 4) {
     window.location.reload();
   }
 }
