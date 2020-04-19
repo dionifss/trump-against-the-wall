@@ -336,7 +336,7 @@ function draw() {
     game.arrCakes1 = [];
     coronimg = coronaimg2;
     imgcake = imgcake1;
-    game.level += 2;
+    game.level += 1;
     frameCount === 0;
     // imgtrumchamp = coronaimg2;
     backgroundimg = imgmexico;
