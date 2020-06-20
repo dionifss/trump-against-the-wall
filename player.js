@@ -59,7 +59,7 @@ class Player {
   trumpgettheflag() {
     // console.log(this.x, this.y);
     if ((this.x == 5 || this.x == 6) && this.y == 5 && game.finished == false) {
-      console.log("america");
+      //console.log("america");
       if (!amerGreat.isPlaying()) {
         amerGreat.setVolume(0.2);
         amerGreat.play();
@@ -75,14 +75,14 @@ class Player {
         if (trumpPreviousX == element.x && trumpPreviousY == element.y) {
           this.squarePosition = trumpArr[this.y][this.x];
           pasingDoor = true;
-          console.log("wiin win");
-          console.log("passed");
+          //console.log("wiin win");
+          //console.log("passed");
         }
       });
       if (pasingDoor == true) {
-        console.log("well done");
+        //console.log("well done");
       } else {
-        console.log("DIONI GAME OVER MAR");
+        //console.log("DIONI GAME OVER MAR");
         game.endGame();
       }
     }

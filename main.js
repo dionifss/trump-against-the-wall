@@ -18,23 +18,18 @@ const door41 = new Door(50, 50, 1, 5, 3, 3);
 const door42 = new Door(50, 50, 1, 6, 3, 3);
 const door51 = new Door(50, 50, 1, 5, 4, 4);
 const door52 = new Door(50, 50, 1, 6, 4, 4);
-// const cake1up = new Shootup();
-// const cake1do = new Shootdo();
 let imgcake;
 let imgcake1;
 let imgcake2;
 let imgcake3;
 let champions;
-
 ///Local storage
 let bestTime = localStorage.getItem("fastestTime");
-
 if (!bestTime) {
-  bestTime = 25;
+  bestTime = 28;
 }
 let counter = 0;
 let backgroundimg;
-
 let song;
 let coronaX = WIDTH - SQUARE_SIDE;
 let coronaY = HEIGHT - SQUARE_SIDE;
@@ -51,13 +46,13 @@ trump.doors.push(
   door51,
   door52
 );
-let slider;
 let coronimg;
 let coronaimg2;
 let coronaimg3;
 let coronaimg4;
 
 function preload() {
+  game.drawLevels();
   trump.preload();
   corona.preload();
   flag.preload();
@@ -85,7 +80,7 @@ function preload() {
   imgcake1 = loadImage("assets/mexicano.png");
   imgcake2 = loadImage("assets/huawei.png");
   imgcake3 = loadImage("assets/marioshoot.png");
-  backgroundimg = loadImage("assets/backgroundcorona.jpg");
+  backgroundimg = loadImage("assets/trumVsBiden.jpg");
   imgmexico = loadImage("assets/backgroundmexico.jpg");
   imgchina = loadImage("assets/backgroundchina.jpg");
   imgmariobg = loadImage("assets/mariobackground.jpg");
@@ -137,32 +132,28 @@ function draw() {
     textFont("helvetica");
     fill("rgb(0,0,0)");
     image(imginit, 50, 10, 500, 522);
-    // text("ENJOY YOUR GAME", 120, 90);
-
     return;
   }
   document.querySelector("#level").innerHTML = game.level;
-
+  paint();
   if (game.inicio) {
     if (frameCount % 60 == 0) {
       counter++;
     }
     document.querySelector("#time").innerHTML = counter;
   }
-
-  game.drawGrid();
-  firstsquare.drawSquares();
-  secondsquare.drawSquares();
-  thirdsquate.drawSquares();
-  fourthquate.drawSquares();
-  fifthquate.drawSquares();
+  // game.drawGrid();
+  // firstsquare.drawSquares();
+  // secondsquare.drawSquares();
+  // thirdsquate.drawSquares();
+  // fourthquate.drawSquares();
+  // fifthquate.drawSquares();
   if (frameCount % (20 - game.level * 2) == 0) {
     door1.movingMarkusdoor();
   }
   if (frameCount % (20 - game.level * 2) == 0) {
     door2.movingMarkusdoor();
   }
-
   if (frameCount % (23 - game.level * 2) == 0) {
     door21.movingMarkusdoor();
   }
@@ -187,17 +178,17 @@ function draw() {
   if (frameCount % (15 - game.level * 2) == 0) {
     door52.movingMarkusdoor();
   }
-  flag.drawFlag();
-  door1.drawDoor();
-  door2.drawDoor();
-  door21.drawDoor();
-  door22.drawDoor();
-  door31.drawDoor();
-  door32.drawDoor();
-  door41.drawDoor();
-  door42.drawDoor();
-  door51.drawDoor();
-  door52.drawDoor();
+  // flag.drawFlag();
+  // door1.drawDoor();
+  // door2.drawDoor();
+  // door21.drawDoor();
+  // door22.drawDoor();
+  // door31.drawDoor();
+  // door32.drawDoor();
+  // door41.drawDoor();
+  // door42.drawDoor();
+  // door51.drawDoor();
+  // door52.drawDoor();
 
   if (game.level === 1 && trump.squarePosition > 0) {
     if (corona.start) {
@@ -316,18 +307,39 @@ function draw() {
       elem.collides();
     });
   }
-
-  trump.draw();
-
-  coronafinallyCrashTrump(arrcoronas, trump);
-  trump.trumpgettheflag();
-
-  if (game.trumpHitTheFlag && game.level === 1) {
+  //trump.draw();
+  function paint() {
+    game.drawGrid();
+    firstsquare.drawSquares();
+    secondsquare.drawSquares();
+    thirdsquate.drawSquares();
+    fourthquate.drawSquares();
+    fifthquate.drawSquares();
+    flag.drawFlag();
+    door1.drawDoor();
+    door2.drawDoor();
+    door21.drawDoor();
+    door22.drawDoor();
+    door31.drawDoor();
+    door32.drawDoor();
+    door41.drawDoor();
+    door42.drawDoor();
+    door51.drawDoor();
+    door52.drawDoor();
+    trump.draw();
+  }
+  function trumpStart() {
     trump.col = 0;
     trump.row = 0;
     trump.x = 0;
     trump.y = 0;
     trump.squarePosition = 0;
+  }
+  coronafinallyCrashTrump(arrcoronas, trump);
+  trump.trumpgettheflag();
+
+  if (game.trumpHitTheFlag && game.level === 1) {
+    trumpStart();
     arrcoronas = [];
     coronaX = WIDTH - SQUARE_SIDE;
     coronaY = HEIGHT - SQUARE_SIDE;
@@ -340,13 +352,17 @@ function draw() {
     frameCount === 0;
     // imgtrumchamp = coronaimg2;
     backgroundimg = imgmexico;
+    paint();
+
+    image(game.level2, 120, 220, 400, 108);
+    noLoop();
+    setTimeout(() => {
+      trumpStart();
+      loop();
+    }, 2300);
   }
   if (game.trumpHitTheFlag && game.level === 2) {
-    trump.col = 0;
-    trump.row = 0;
-    trump.x = 0;
-    trump.y = 0;
-    trump.squarePosition = 0;
+    trumpStart();
     arrcoronas = [];
     game.arrCakes1 = [];
     coronaX = WIDTH - SQUARE_SIDE;
@@ -357,14 +373,18 @@ function draw() {
     imgcake = imgcake2;
     game.level += 1;
     backgroundimg = imgchina;
+    paint();
+    image(game.level3, 120, 220, 400, 108);
+
+    noLoop();
+    setTimeout(() => {
+      trumpStart();
+      loop();
+    }, 2300);
   }
 
   if (game.trumpHitTheFlag && game.level === 3) {
-    trump.col = 0;
-    trump.row = 0;
-    trump.x = 0;
-    trump.y = 0;
-    trump.squarePosition = 0;
+    trumpStart();
     arrcoronas = [];
     game.arrCakes1 = [];
     coronaX = WIDTH - SQUARE_SIDE;
@@ -375,6 +395,13 @@ function draw() {
     imgcake = imgcake3;
     game.level += 1;
     backgroundimg = imgmariobg;
+    paint();
+    image(game.level4, 120, 220, 400, 108);
+    noLoop();
+    setTimeout(() => {
+      trumpStart();
+      loop();
+    }, 2300);
   }
   if (game.trumpHitTheFlag && game.level === 4) {
     noLoop();
