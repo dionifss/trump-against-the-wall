@@ -86,6 +86,7 @@ function preload() {
   imgmariobg = loadImage("assets/mariobackground.jpg");
   imggameover = loadImage("assets/gameover.png");
   backgroundgameover = loadImage("assets/trumpgameover.png");
+  s1 = loadImage("assets/rectangle1.png");
 }
 function setup() {
   createCanvas(WIDTH, HEIGHT).position(120, 95);
