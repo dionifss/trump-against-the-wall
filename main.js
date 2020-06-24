@@ -87,6 +87,10 @@ function preload() {
   imggameover = loadImage("assets/gameover.png");
   backgroundgameover = loadImage("assets/trumpgameover.png");
   s1 = loadImage("assets/rectangle1.png");
+  s2 = loadImage("assets/secondFire.png");
+  s3 = loadImage("assets/rectangle3.png");
+  s4 = loadImage("assets/square 4.png");
+  s5 = loadImage("assets/square5.png");
 }
 function setup() {
   createCanvas(WIDTH, HEIGHT).position(120, 95);
@@ -143,12 +147,7 @@ function draw() {
     }
     document.querySelector("#time").innerHTML = counter;
   }
-  // game.drawGrid();
-  // firstsquare.drawSquares();
-  // secondsquare.drawSquares();
-  // thirdsquate.drawSquares();
-  // fourthquate.drawSquares();
-  // fifthquate.drawSquares();
+
   if (frameCount % (20 - game.level * 2) == 0) {
     door1.movingMarkusdoor();
   }
@@ -179,17 +178,6 @@ function draw() {
   if (frameCount % (15 - game.level * 2) == 0) {
     door52.movingMarkusdoor();
   }
-  // flag.drawFlag();
-  // door1.drawDoor();
-  // door2.drawDoor();
-  // door21.drawDoor();
-  // door22.drawDoor();
-  // door31.drawDoor();
-  // door32.drawDoor();
-  // door41.drawDoor();
-  // door42.drawDoor();
-  // door51.drawDoor();
-  // door52.drawDoor();
 
   if (game.level === 1 && trump.squarePosition > 0) {
     if (corona.start) {
@@ -311,11 +299,12 @@ function draw() {
   //trump.draw();
   function paint() {
     game.drawGrid();
-    firstsquare.drawSquares();
-    secondsquare.drawSquares();
-    thirdsquate.drawSquares();
-    fourthquate.drawSquares();
-    fifthquate.drawSquares();
+    //firstsquare.drawSquares();
+    //secondsquare.drawSquares();
+    //thirdsquate.drawSquares();
+    //fourthquate.drawSquares();
+    //fifthquate.drawSquares();
+    firstsquare.drawFire();
     flag.drawFlag();
     door1.drawDoor();
     door2.drawDoor();

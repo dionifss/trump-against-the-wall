@@ -101,6 +101,6 @@ class Player {
 
   draw() {
     // image(this.img, this.col, this.row, 45, 45);
-    image(this.img, this.col + 4, this.row + 5, 45, 45);
+    image(this.img, this.col + 4, this.row + 5, 40, 40);
   }
 }

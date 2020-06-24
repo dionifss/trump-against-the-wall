@@ -16,4 +16,11 @@ class Squares {
     rect(this.col + 2.05, this.col + 2.05, this.size + 50, this.size);
     image(s1, 45, 45, 515, 465);
   }
+  drawFire() {
+    image(s1, 45, 45, 516, 463);
+    image(s2, 97, 97, 411, 361);
+    image(s3, 147, 148, 310, 260);
+    image(s4, 196.5, 197, 212, 162);
+    image(s5, 246, 245, 112, 62);
+  }
 }
